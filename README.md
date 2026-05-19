@@ -1,1 +1,1 @@
-# project-troubadour
+# project-minstrel
