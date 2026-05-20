@@ -1,0 +1,50 @@
+services:
+
+  backend:
+    build: ./backend
+    container_name: minstrel_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+  
+  db:
+    image: postgres:17.10
+    container_name: minstrel_db
+    restart: always
+    environment:
+      POSTGRES_DB: minstrel
+      POSTGRES_USER: minstrel_admin
+      POSTGRES_PASSWORD: minstrel_admin_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7.4
+    container_name: minstrel_redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: ./backend
+    container_name: mintrel_celery
+    command: celery -A config worker -l info
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    depends_on:
+      - backend
+      - redis
+      - db
+
+volumes:
+  postgres_data:
