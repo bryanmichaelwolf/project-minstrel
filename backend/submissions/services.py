@@ -9,11 +9,11 @@ class SubmissionService:
         submission.save()
 
     @staticmethod
-    def move_to_review(submission: Submission):
+    def accept(submission: Submission):
         submission.status = SubmissionStatus.ACCEPTED
         submission.save()
 
     @staticmethod
-    def move_to_review(submission: Submission):
+    def reject(submission: Submission):
         submission.status = SubmissionStatus.REJECTED
         submission.save()
