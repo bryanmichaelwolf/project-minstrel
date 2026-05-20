@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'publications',
+    'submissions',
     'corsheaders',
     'rest_framework',
     'django.contrib.admin',
