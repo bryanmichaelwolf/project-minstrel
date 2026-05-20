@@ -7,7 +7,7 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     env_file:
       - .env
     depends_on:
@@ -19,19 +19,19 @@ services:
     container_name: minstrel_db
     restart: always
     environment:
-      POSTGRES_DB: minstrel
-      POSTGRES_USER: minstrel_admin
-      POSTGRES_PASSWORD: minstrel_admin_password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
 
   redis:
     image: redis:7.4
     container_name: minstrel_redis
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
 
   celery:
     build: ./backend
