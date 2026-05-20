@@ -3,6 +3,8 @@ asgiref==3.11.1
 attrs==26.1.0
 billiard==4.2.4
 celery==5.6.3
+certifi==2026.5.20
+charset-normalizer==3.4.7
 click==8.4.0
 click-didyoumean==0.3.1
 click-plugins==1.1.1.2
@@ -14,6 +16,7 @@ drf-spectacular==0.29.0
 drf-spectacular-sidecar==2026.5.1
 gunicorn==26.0.0
 h11==0.16.0
+idna==3.15
 inflection==0.5.1
 jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
@@ -26,12 +29,16 @@ python-dotenv==1.2.2
 PyYAML==6.0.3
 redis==7.4.0
 referencing==0.37.0
+requests==2.34.2
 rpds-py==0.30.0
 six==1.17.0
 sqlparse==0.5.5
+stripe==15.1.0
+typing_extensions==4.15.0
 tzdata==2026.2
 tzlocal==5.3.1
 uritemplate==4.2.0
+urllib3==2.7.0
 uvicorn==0.47.0
 vine==5.1.0
 wcwidth==0.7.0
