@@ -5,7 +5,7 @@ from .views import (
     PublicationViewSet
 )
 
-routers = DefaultRouter()
+router = DefaultRouter()
 
 router.register(
     'organizations',
