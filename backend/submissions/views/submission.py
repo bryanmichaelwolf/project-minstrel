@@ -2,9 +2,9 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import Submission
-from .serializers import SubmissionSerializer
-from .services import SubmissionService
+from submissions.models import Submission
+from submissions.serializers import SubmissionSerializer
+from submissions.services import SubmissionService
 
 
 class SubmissionViewSet(viewsets.ModelViewSet):

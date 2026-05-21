@@ -1,4 +1,4 @@
-from .models import Submission, SubmissionStatus
+from submissions.models import Submission, SubmissionStatus
 
 
 class SubmissionService:

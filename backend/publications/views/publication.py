@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Publication
-from .serializers import PublicationsSerializer
+from publications.models import Publication
+from publications.serializers import PublicationsSerializer
 
 
 class PublicationViewSet(viewsets.ModelViewSet):

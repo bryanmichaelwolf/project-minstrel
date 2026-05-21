@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Publication
+from publications.models import Publication
 
 
 class PublicationsSerializer(serializers.ModelSerializer):
