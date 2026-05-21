@@ -128,6 +128,9 @@ CORS_ALLOWS_ALL_ORIGINS = True
 
 CELERY_BROKER_URL = os.getenv('REDIS_URL')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
