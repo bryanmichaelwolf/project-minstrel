@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'publications',
     'submissions',
     'corsheaders',
@@ -116,6 +117,9 @@ DATABASES = {
         'PORT': os.getenv("POSTGRES_PORT"),
     }
 }
+
+
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # Password validation
