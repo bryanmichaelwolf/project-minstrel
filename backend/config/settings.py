@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'publications',
     'submissions',
     'corsheaders',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,6 +81,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': (
+        'drf_spectacular.openapi.AutoSchema'
+    ),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Minstrel API',
+    'DESCRIPTION': (
+        'Editorial workflow and submission platform API.'
+    ),
+    'VERSION': '1.0.0',
+
+    'SERVE_INCLUDE_SCHEMA': False,
+
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+
+    'REDOC_DIST': 'SIDECAR',
+}
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
