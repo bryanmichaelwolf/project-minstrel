@@ -99,20 +99,18 @@ Implemented core editorial workflow systems, including:
 - Modular application structure refactor
 - Initial async task execution support
 
-### Current Phase
-
 #### Phase 3 - Identity & Authorization
 
-Currently implementing:
+Implemented core access & authentication systems, including:
 
-- Custom user model
+- Accounts domain models
 - JWT authentication
 - Submission ownership
 - Publication membership systems
 - Role-based permissions
 - Access control architecture
 
-### Future Phases
+### Current Phase
 
 #### Phase 4 - Editorial Collaboration
 
@@ -123,6 +121,8 @@ Planned features include:
 - Blind review workflows
 - Editorial discussion systems
 - Workflow event logging
+
+### Future Phases
 
 #### Phase 5 - Payments & Platform Operations
 
