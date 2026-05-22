@@ -1,10 +1,10 @@
 from django.db import models
+from django.conf import settings
 from publications.models import Publication
 
 
 class SubmissionStatus(models.TextChoices):
-    DRAFT = 'draft', 'Draft'
-    SUMITTED = 'submitted', 'Submitted'
+    SUBMITTED = 'submitted', 'Submitted'
     IN_REVIEW = 'in review', 'In Review'
     ACCEPTED = 'accepted', 'Accepted'
     REJECTED = 'rejected', 'Rejected'
@@ -33,7 +33,13 @@ class Submission(models.Model):
     status = models.CharField(
         max_length=50,
         choices=SubmissionStatus.choices,
-        default=SubmissionStatus.SUMITTED
+        default=SubmissionStatus.SUBMITTED
+    )
+
+    submitted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='submissions',
     )
 
     submitted_at = models.DateTimeField(auto_now_add=True)
