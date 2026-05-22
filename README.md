@@ -4,17 +4,18 @@ API-first editorial workflow infrastructure for literary journals, magazines, an
 
 ## Overview
 
-Minstrel is a modular editorial workflow platform designed for literary journals, magazines, and independent publishers.
+Minstrel is a containerized, API-first submissions and editorial workflow platform built with Django REST Framework.
 
-The platform provides infrastructure for:
+The platform is designed to support literary journals, publications, editorial teams, and review organizations through a modular and scalable architecture.
 
-- submission management
-- editorial workflows
-- publication administration
-- review pipelines
-- contributor management
-- payment processing
-- asynchronous workflow automation
+Minstrel provides:
+- submission intake workflows
+- publication-scoped permissions
+- editorial workflow transitions
+- JWT authentication
+- asynchronous task processing with Celery
+- OpenAPI documentaion
+- Dockerized development & deployment
 
 Minstrel is being developed as a frontend-agnostic, API-first system capable of supporting both independent literary journals and larger multi-publication publishing organizations.
 
@@ -45,6 +46,7 @@ Background processing is powered by Celery and Redis to support notifications, f
 - PostgreSQL
 - Celery
 - Redis
+- JWT (SimpleJWT)
 
 ### Infrastructure
 - Docker
@@ -57,15 +59,35 @@ Background processing is powered by Celery and Redis to support notifications, f
 - ReDoc
 
 ## Current Features
+
+### Authentication & Authorization
+- JWT authentication (SimpleJWT)
+- Publication-scoped editorial permissions
+- Submission ownership enforcement
+- Protected workflow actions
+
+### Submission Workflows
+- Submission creation
+- Editorial workflow transitions
+- Workflow transition validation
+- Publication membership roles
+- Status lifecycle management
+
+### Infrastructure
 - Dockerized development environment
-- Modular Django application structure
-- Publication management
-- Submission workflows
-- Workflow transition endpoints
-- File upload support
-- OpenAPI documentation
-- Celery task infrastructure
-- Redis-backed async processing
+- PostgreSQL database
+- Redis broker
+- Celery async task processing
+- Environment-based configuration
+- OpenAPI schema generation
+- Swagger/ReDoc API documentation
+
+### Architecture
+- Modular Django app structure
+- Service-layer workflow orchestration
+- Serializer separation
+- Async-ready infrastructure
+- Frontend-agnostic API design
 
 ## Roadmap
 
@@ -235,10 +257,3 @@ Minstrel is currently under active development and is not production-ready.
 ## License
 
 This project is licensed under the MIT license.
-
-
-
-
-
-
-
