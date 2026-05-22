@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Organization, Publication
+from .models import (
+    Organization,
+    Publication,
+    PublicationMember,
+    )
 
-# Register your models here.
 admin.site.register(Organization)
 admin.site.register(Publication)
+admin.site.register(PublicationMember)
