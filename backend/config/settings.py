@@ -124,6 +124,12 @@ SPECTACULAR_SETTINGS = {
     'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
 
     'REDOC_DIST': 'SIDECAR',
+
+    'SECURITY': [
+        {
+            'BearerAuth': [],
+        }
+    ],
 }
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
