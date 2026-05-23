@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from submissions.models import SubmissionStatus
+from submissions.models.submission_status import SubmissionStatus
 from publications.models import Publication
 
 
