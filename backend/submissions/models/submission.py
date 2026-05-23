@@ -1,14 +1,7 @@
 from django.db import models
 from django.conf import settings
+from submissions.models.submission_status import SubmissionStatus
 from publications.models import Publication
-
-
-class SubmissionStatus(models.TextChoices):
-    SUBMITTED = 'submitted', 'Submitted'
-    IN_REVIEW = 'in review', 'In Review'
-    ACCEPTED = 'accepted', 'Accepted'
-    REJECTED = 'rejected', 'Rejected'
-    WITHDRAWN = 'withdrawn', 'Withdrawn'
 
 
 class Submission(models.Model):
