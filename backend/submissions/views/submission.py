@@ -11,6 +11,8 @@ from submissions.serializers import SubmissionSerializer
 from submissions.services import SubmissionService
 from submissions.permissions import IsPublicationEditor
 
+from submissions.selectors import get_submission_detail
+
 
 class SubmissionViewSet(viewsets.ModelViewSet):
     queryset = Submission.objects.all()
@@ -48,7 +50,9 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         permission_classes=[IsPublicationEditor],    
     )
     def move_to_review(self, request, pk=None):
-        submission = self.get_object()
+        submission = get_submission_detail(
+            submission_id=pk
+        )
 
         self.check_object_permissions(
             request,
@@ -70,7 +74,9 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         permission_classes=[IsPublicationEditor],    
     )
     def accept(self, request, pk=None):
-        submission = self.get_object()
+        submission = get_submission_detail(
+            submission_id=pk
+        )
 
         self.check_object_permissions(
             request,
@@ -92,7 +98,9 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         permission_classes=[IsPublicationEditor],
     )
     def reject(self, request, pk=None):
-        submission = self.get_object()
+        submission = get_submission_detail(
+            submission_id=pk
+        )
 
         self.check_object_permissions(
             request,
@@ -114,7 +122,9 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         permission_classes=[IsPublicationEditor],
     )
     def withdraw(self, request, pk=None):
-        submission = self.get_object()
+        submission = get_submission_detail(
+            submission_id=pk
+        )
 
         self.check_object_permissions(
             request,

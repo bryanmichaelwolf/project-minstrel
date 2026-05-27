@@ -1,0 +1,1 @@
+from .submission_selectors import get_submission_detail
