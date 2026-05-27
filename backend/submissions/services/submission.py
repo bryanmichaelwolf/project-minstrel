@@ -4,6 +4,7 @@ from submissions.models import (
     Submission,
     SubmissionStatus,
     SubmissionEvent,
+    Review,
 ) 
 
 
@@ -48,6 +49,32 @@ class SubmissionService:
                 f'{new_status}'
             )
     
+    @staticmethod
+    def assign_reviewer(
+        submission,
+        reviewer,
+        actor,
+    ):
+        
+        review = Review.objects.create(
+            submission=submission,
+            reviewer = reviewer,
+        )
+
+        SubmissionEvent.objects.create(
+            submission=submission,
+            actor=actor,
+            event_type=(
+                SubmissionEvent.EventType.REVIEW_ASSIGNED
+            ),
+            metadata={
+                'reviewer_id': reviewer.id,
+                'reviewer_email': reviewer.email,
+            }
+        )
+
+        return review
+
     @staticmethod
     def move_to_review(
         submission: Submission,
