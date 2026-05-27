@@ -4,6 +4,7 @@ from submissions.models import (
     Submission,
     SubmissionStatus,
     SubmissionEvent,
+    Review,
 ) 
 
 
@@ -48,6 +49,15 @@ class SubmissionService:
                 f'{new_status}'
             )
     
+    @staticmethod
+    def assign_reviewer(
+        submission,
+        reviewer,
+        actor,
+    ):
+        
+        review = Rev
+
     @staticmethod
     def move_to_review(
         submission: Submission,
