@@ -70,6 +70,6 @@ class SubmissionEvent(models.Model):
     
     def __str__(self):
         return (
-            f'{self.event_type} ',
+            f'{self.event_type} '
             f'for Submission {self.submission_id}'
         )
