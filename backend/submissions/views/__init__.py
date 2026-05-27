@@ -1,1 +1,4 @@
-from .submission import SubmissionViewSet
+from .submission_views import SubmissionViewSet
+from submission_event_views import SubmissionEventViewSet
+from .review_views import ReviewViewSet
+from .editorial_note_views import EditorialNoteViewSet
