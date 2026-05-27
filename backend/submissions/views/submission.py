@@ -55,7 +55,10 @@ class SubmissionViewSet(viewsets.ModelViewSet):
             submission
         )
 
-        SubmissionService.move_to_review(submission)
+        SubmissionService.move_to_review(
+            submission,
+            actor=request.user,
+        )
 
         serializer = self.serializer_class(submission)
 
@@ -74,7 +77,10 @@ class SubmissionViewSet(viewsets.ModelViewSet):
             submission,
         )
 
-        SubmissionService.accept(submission)
+        SubmissionService.accept(
+            submission,
+            actor=request.user,
+        )
 
         serializer = self.get_serializer(submission)
 
@@ -93,7 +99,10 @@ class SubmissionViewSet(viewsets.ModelViewSet):
             submission
         )
 
-        SubmissionService.reject(submission)
+        SubmissionService.reject(
+            submission,
+            actor=request.user,
+        )
 
         serializer = self.serializer_class(submission)
 
@@ -112,7 +121,10 @@ class SubmissionViewSet(viewsets.ModelViewSet):
             submission
         )
 
-        SubmissionService.withdraw(submission)
+        SubmissionService.withdraw(
+            submission,
+            actor=request.user,
+        )
 
         serializer = self.serializer_class(submission)
 

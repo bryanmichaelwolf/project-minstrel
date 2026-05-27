@@ -1,6 +1,10 @@
 from rest_framework.exceptions import ValidationError
 
-from submissions.models import Submission, SubmissionStatus
+from submissions.models import (
+    Submission,
+    SubmissionStatus,
+    SubmissionEvent,
+) 
 
 
 class SubmissionService:
@@ -45,45 +49,117 @@ class SubmissionService:
             )
     
     @staticmethod
-    def move_to_review(submission: Submission):
+    def move_to_review(
+        submission: Submission,
+        actor,
+    ):
 
         SubmissionService.validate_transition(
             submission,
             SubmissionStatus.IN_REVIEW,
         )
 
+        previous_status = submission.status
+
         submission.status = SubmissionStatus.IN_REVIEW
+        
         submission.save()
 
+        SubmissionEvent.objects.create(
+            submission = submission,
+            actor = actor,
+            event_type=(
+                SubmissionEvent.EventType.MOVED_TO_REVIEW
+            ),
+            metadata={
+                'previous_starefactoredtus': previous_status,
+                'new_status': submission.status,
+            }
+        )
+
     @staticmethod
-    def accept(submission: Submission):
+    def accept(
+        submission: Submission,
+        actor,
+    ):
 
         SubmissionService.validate_transition(
             submission,
             SubmissionStatus.ACCEPTED,
         )
 
+        previous_status = submission.status
+
         submission.status = SubmissionStatus.ACCEPTED
+        
         submission.save()
 
+        SubmissionEvent.objects.create(
+            submission = submission,
+            actor = actor,
+            event_type=(
+                SubmissionEvent.EventType.ACCEPTED
+            ),
+            metadata={
+                'previous_status': previous_status,
+                'new_status': submission.status,
+            }
+        )
+
     @staticmethod
-    def reject(submission: Submission):
+    def reject(
+        submission: Submission,
+        actor,
+    ):
 
         SubmissionService.validate_transition(
             submission,
             SubmissionStatus.REJECTED,
         )
 
+        previous_status = submission.status
+
         submission.status = SubmissionStatus.REJECTED
+        
         submission.save()
+
+        SubmissionEvent.objects.create(
+            submission = submission,
+            actor = actor,
+            event_type=(
+                SubmissionEvent.EventType.REJECTED
+            ),
+            metadata={
+                'previous_status': previous_status,
+                'new_status': submission.status,
+            }
+        )
     
     @staticmethod
-    def withdraw(submission: Submission):
+    def withdraw(
+        submission: Submission,
+        actor,
+    ):
 
         SubmissionService.validate_transition(
             submission,
             SubmissionStatus.WITHDRAWN,
         )
 
+        previous_status = submission.status
+
         submission.status = SubmissionStatus.WITHDRAWN
+        
         submission.save()
+
+        SubmissionEvent.objects.create(
+            submission = submission,
+            actor = actor,
+            event_type=(
+                SubmissionEvent.EventType.WITHDRAWN
+            ),
+            metadata={
+                'previous_status': previous_status,
+                'new_status': submission.status,
+            }
+        )
