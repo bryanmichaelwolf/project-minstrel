@@ -1,1 +1,1 @@
-from .submission import SubmissionSerializer
+from .submission_serializer import SubmissionSerializer
