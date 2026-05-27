@@ -1,5 +1,12 @@
 from rest_framework.exceptions import ValidationError
 
+from submissions.tasks import (
+    send_submission_in_review_email,
+    send_submission_accepted_email,
+    send_submission_rejected_email,
+    send_submission_withdrawn_email,
+)
+
 from submissions.models import (
     Submission,
     SubmissionStatus,
@@ -104,6 +111,10 @@ class SubmissionService:
             }
         )
 
+        send_submission_in_review_email.delay(
+            submission.id
+        )
+
     @staticmethod
     def accept(
         submission: Submission,
@@ -131,6 +142,10 @@ class SubmissionService:
                 'previous_status': previous_status,
                 'new_status': submission.status,
             }
+        )
+
+        send_submission_accepted_email.delay(
+            submission.id
         )
 
     @staticmethod
@@ -161,6 +176,10 @@ class SubmissionService:
                 'new_status': submission.status,
             }
         )
+
+        send_submission_rejected_email.delay(
+            submission.id
+        )
     
     @staticmethod
     def withdraw(
@@ -189,4 +208,8 @@ class SubmissionService:
                 'previous_status': previous_status,
                 'new_status': submission.status,
             }
+        )
+
+        send_submission_withdrawn_email.delay(
+            submission.id
         )
