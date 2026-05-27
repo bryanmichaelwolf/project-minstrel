@@ -1,1 +1,1 @@
-from .tasks import test_task
+from .notification_tasks import send_submission_accepted_email
