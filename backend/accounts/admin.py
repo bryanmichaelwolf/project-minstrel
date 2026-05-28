@@ -6,32 +6,86 @@ from accounts.models import User
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
+    
     model = User
 
     list_display = (
         'id',
         'email',
-        'username',
         'is_staff',
         'is_active',
+        'created_at',
     )
 
-    ordering = ('email',)
+    list_filter = (
+        'is_staff',
+        'is_active',
+        'is_superuser',
+        'created_at',
+    )
 
-    fieldsets = UserAdmin.fieldsets + (
+    search_fields = (
+        'email',
+    )
+
+    ordering = (
+        '-created_at',
+    )
+
+    readonly_fields = (
+        'created_at',
+        'updated_at',
+        'last_login',
+    )
+
+    fieldsets = (
         (
-            'Custom Fields',
+            None,
             {
-                'fields': ()
+                'fields': (
+                    'email',
+                    'password',
+                )
+            },
+        ),
+        (
+            'Permissions',
+            {
+                'fields': (
+                    'is_active',
+                    'is_staff',
+                    'is_superuser',
+                    'groups',
+                    'user_permissions',
+                )
+            },
+        ),
+        (
+            'Important Dates',
+            {
+                'fields': (
+                    'last_login',
+                    'created_at',
+                    'updated_at',
+                )
             },
         ),
     )
 
-    add_fieldsets = UserAdmin.add_fieldsets + (
+    add_fieldsets = (
         (
-            'Custom Fields',
+            None,
             {
-                'fields': ()
+                'classes': (
+                    'wide',
+                ),
+                'fields': (
+                    'email',
+                    'password1',
+                    'password2',
+                    'is_staff',
+                    'is_active',
+                ),
             },
         ),
     )

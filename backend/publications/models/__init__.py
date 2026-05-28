@@ -1,3 +1,3 @@
 from .organization import Organization
 from .publication import Publication
-from .membership import PublicationMember
+from .publication_member import PublicationMember
