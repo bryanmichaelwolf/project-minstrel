@@ -6,8 +6,8 @@ from .models import (
 )
 
 
-class SubmissionEventInLine(
-    admin.TabularInLine
+class SubmissionEventInline(
+    admin.TabularInline
 ):
     
     model = SubmissionEvent
@@ -64,7 +64,7 @@ class SubmissionAdmin(admin.ModelAdmin):
     )
 
     inlines = [
-        SubmissionEventInLine,
+        SubmissionEventInline,
     ]
 
     ordering = (
