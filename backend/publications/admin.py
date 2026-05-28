@@ -35,8 +35,8 @@ class OrganizationAdmin(admin.ModelAdmin):
         ),
     }
 
-class PublicationMemberInLine(
-    admin.TabularInLine
+class PublicationMemberInline(
+    admin.TabularInline
 ):
     
     model = PublicationMember
@@ -81,7 +81,7 @@ class PublicationAdmin(admin.ModelAdmin):
     )
 
     inlines = [
-        PublicationMemberInLine,
+        PublicationMemberInline,
     ]
 
 @admin.register(PublicationMember)
