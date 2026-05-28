@@ -2,8 +2,15 @@ from django.db import models
 
 
 class SubmissionStatus(models.TextChoices):
-    SUBMITTED = 'submitted', 'Submitted'
-    IN_REVIEW = 'in review', 'In Review'
-    ACCEPTED = 'accepted', 'Accepted'
-    REJECTED = 'rejected', 'Rejected'
-    WITHDRAWN = 'withdrawn', 'Withdrawn'
+    
+    DRAFT = 'DRAFT', 'Draft'
+    
+    SUBMITTED = 'SUBMITTED', 'Submitted'
+    
+    IN_REVIEW = 'IN_REVIEW', 'In Review'
+    
+    ACCEPTED = 'ACCEPTED', 'Accepted'
+    
+    REJECTED = 'REJECTED', 'Rejected'
+    
+    WITHDRAWN = 'WITHDRAWN', 'Withdrawn'

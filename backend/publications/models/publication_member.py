@@ -1,26 +1,31 @@
 from django.conf import settings
 from django.db import models
 
-from .publication import Publication
+from publications.models import (
+    Publication,
+)
 
 
 class PublicationMember(models.Model):
 
     class Role(models.TextChoices):
+        
         ADMIN = 'ADMIN', 'Admin'
+        
         EDITOR = 'EDITOR', 'Editor'
+        
         REVIEWER = 'REVIEWER', 'Reviewer'
 
     publication = models.ForeignKey(
         Publication,
         on_delete=models.CASCADE,
-        related_name='members',
+        related_name='memberships',
     )
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='publication_membership',
+        related_name='publication_memberships',
     )
 
     role = models.CharField(
@@ -32,15 +37,25 @@ class PublicationMember(models.Model):
         auto_now_add=True
     )
 
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
+
     class Meta:
+        
         unique_together = (
             'publication',
             'user',
         )
 
+        ordering = [
+            'publication',
+            'user',
+        ]
+
     def __str__(self):
         return (
-            f"{self.user.email} - "
-            f"{self.publication.name} - "
-            f"{self.role}"
+            f'{self.user.email} '
+            f'-> {self.publication} '
+            f'({self.role})'
         )

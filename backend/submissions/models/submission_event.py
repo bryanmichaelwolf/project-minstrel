@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.db import models
 
-from submissions.models import Submission
+from submissions.models import (
+    Submission,
+)
 
 
 class SubmissionEvent(models.Model):
@@ -50,7 +52,7 @@ class SubmissionEvent(models.Model):
         related_name='submission_events',
     )
 
-    event_type = models.JSONField(
+    event_type = models.CharField(
         max_length=50,
         choices=EventType.choices,
     )
@@ -67,8 +69,18 @@ class SubmissionEvent(models.Model):
     class Meta:
 
         ordering = ['-created_at']
+
+        indexes = [
+            models.Index(
+                fields=['event_type']
+            ),
+            models.Index(
+                fields=['created_at']
+            ),
+        ]
     
     def __str__(self):
+        
         return (
             f'{self.event_type} '
             f'for Submission {self.submission_id}'
