@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+import logging
+import sys
 
 from datetime import timedelta
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_spectacular',
     'drf_spectacular_sidecar',
+    'request_logging',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,6 +59,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'request_logging.middleware.LoggingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -192,6 +196,88 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGGING = {
+    
+    'version': 1,
+
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        
+        'standard': {
+        
+            'format': (
+                '[(asctime)] '
+                '{levelname} '
+                '{name}: '
+                '{message}'
+            ),
+
+            'style': '{',
+        },
+
+        'json': {
+            '()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+        },
+    },
+
+    'handlers': {
+
+        'console': {
+
+            'class': 'logging.StreamHandler',
+
+            'stream': sys.stdout,
+
+            'formatter': 'standard',
+        }, 
+    },
+
+    'root': {
+        'handlers': ['console'],
+
+        'level': 'INFO',
+    },
+    'loggers': {
+
+        'django': {
+
+            'handlers': ['console'],
+
+            'level': 'INFO',
+
+            'propagate': False,
+        },
+
+        'submissions': {
+
+            'handlers': ['console'],
+
+            'level': 'INFO',
+
+            'propagate': False,
+        },
+
+        'publications': {
+
+            'handlers': ['console'],
+
+            'level': 'INFO',
+
+            'propagate': False,
+        },
+
+        'celery': {
+
+            'handlers': ['console'],
+
+            'level': 'INFO',
+
+            'propagate': False,
+        },
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/

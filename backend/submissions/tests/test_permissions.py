@@ -54,7 +54,7 @@ class PermissionTests(
         submission = SubmissionFactory()
 
         permission = (
-            IsPublicationEditor
+            IsPublicationEditor()
         )
 
         request = type(
