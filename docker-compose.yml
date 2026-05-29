@@ -1,9 +1,15 @@
 services:
 
   backend:
-    build: ./backend
+    build: 
+      context: ./backend
     container_name: minstrel_backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c '
+      python manage.py migrate &&
+      gunicorn config.wsgi:application
+      --bind 0.0.0.0:8000
+      '
     volumes:
       - ./backend:/app
       - ./backend/media:/app/media
@@ -12,8 +18,22 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'python',
+          'manage.py',
+          'check'
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
   
   db:
     image: postgres:17.10
@@ -27,12 +47,33 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "127.0.0.1:5432:5432"
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB'
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   redis:
     image: redis:7.4
     container_name: minstrel_redis
     ports:
       - "127.0.0.1:6379:6379"
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'redis-cli',
+          'ping'
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   celery:
     build: ./backend
@@ -43,9 +84,22 @@ services:
     env_file:
       - .env
     depends_on:
-      - backend
-      - redis
-      - db
+      backend:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'celery -A config inspect ping'
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
 volumes:
   postgres_data:

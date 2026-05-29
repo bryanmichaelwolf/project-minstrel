@@ -1,4 +1,4 @@
-from rest_framework.exceptions import ValidationError
+from django.core.exceptions import ValidationError
 
 from submissions.tasks import (
     send_submission_in_review_email,
