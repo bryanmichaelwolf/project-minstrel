@@ -1,14 +1,14 @@
-# Minstrel
+# Slush
 
 API-first editorial workflow infrastructure for literary journals, magazines, and publishers.
 
 ## Overview
 
-Minstrel is a containerized, API-first submissions and editorial workflow platform built with Django REST Framework.
+Slush is a containerized, API-first submissions and editorial workflow platform built with Django REST Framework.
 
 The platform is designed to support literary journals, publications, editorial teams, and review organizations through a modular and scalable architecture.
 
-Minstrel provides:
+Slush provides:
 - submission intake workflows
 - publication-scoped permissions
 - editorial workflow transitions
@@ -17,23 +17,23 @@ Minstrel provides:
 - OpenAPI documentaion
 - Dockerized development & deployment
 
-Minstrel is being developed as a frontend-agnostic, API-first system capable of supporting both independent literary journals and larger multi-publication publishing organizations.
+Slush is being developed as a frontend-agnostic, API-first system capable of supporting both independent literary journals and larger multi-publication publishing organizations.
 
 ## Design Principles
 
-Minstrel is built around several core architectural principles:
+Slush is built around several core architectural principles:
 
 ### API-First
 The platform is deisnged as a backend system with fully documented REST APIs.
 
 ### Frontend Agnostic
-Minstrel is intended to support multiple frontend implementations, including custom publication websites, editorial dashboards, and third-party integrations.
+Slush is intended to support multiple frontend implementations, including custom publication websites, editorial dashboards, and third-party integrations.
 
 ### Wrokflow-Oriented
 The platform models editorial and publishing operations as explicit workflow systems rather than simple CRUD applications.
 
 ### Modular Monolith Architecture
-Minstrel currently follows a modular monolith architecture emphasizing domain separation, maintainability, and future scalability.
+Slush currently follows a modular monolith architecture emphasizing domain separation, maintainability, and future scalability.
 
 ### Async-Capable Infrastructure
 Background processing is powered by Celery and Redis to support notifications, file processing, payment handling, and future workflow automation.
@@ -91,7 +91,7 @@ Background processing is powered by Celery and Redis to support notifications, f
 
 ## Roadmap
 
-Minstrel is being developed iteratively in architectural phases focused on long-term platform scalability and workflow extensibility.
+Slush is being developed iteratively in architectural phases focused on long-term platform scalability and workflow extensibility.
 
 ### Completed Phases
 
@@ -172,7 +172,7 @@ Planned features include:
 
 ```bash
 git clone <repo-url>
-cd minstrel
+cd slush
 ```
 
 ---
@@ -252,7 +252,7 @@ The local development environment currently includes:
 
 ## Development Status
 
-Minstrel is currently under active development and is not production-ready.
+Slush is currently under active development and is not production-ready.
 
 ## License
 
