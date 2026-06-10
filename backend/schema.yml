@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Minstrel API
+  title: Slush API
   version: 1.0.0
   description: Editorial workflow and submission platform API.
 paths:
