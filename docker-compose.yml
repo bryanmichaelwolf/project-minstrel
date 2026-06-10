@@ -3,7 +3,7 @@ services:
   backend:
     build: 
       context: ./backend
-    container_name: minstrel_backend
+    container_name: slush_backend
     command: >
       sh -c '
       python manage.py migrate &&
@@ -37,7 +37,7 @@ services:
   
   db:
     image: postgres:17.10
-    container_name: minstrel_db
+    container_name: slush_db
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -60,7 +60,7 @@ services:
 
   redis:
     image: redis:7.4
-    container_name: minstrel_redis
+    container_name: slush_redis
     ports:
       - "127.0.0.1:6379:6379"
     healthcheck:
@@ -77,7 +77,7 @@ services:
 
   celery:
     build: ./backend
-    container_name: mintrel_celery
+    container_name: slush_celery
     command: celery -A config worker -l info
     volumes:
       - ./backend:/app
