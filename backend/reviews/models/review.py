@@ -1,6 +1,6 @@
 from django.db import models
 
-from reviews.models import (
+from reviews.models.review_assignment import (
     ReviewAssignment,
 )
 

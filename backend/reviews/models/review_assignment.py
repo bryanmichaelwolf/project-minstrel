@@ -54,7 +54,7 @@ class ReviewAssignment(models.Model):
     class Meta:
 
         constraints = [
-            models.Constraint(
+            models.UniqueConstraint(
                 fields = [
                     "submission",
                     "reviewer",
