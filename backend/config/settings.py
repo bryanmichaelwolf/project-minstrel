@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'publications',
     'submissions',
+    'reviews',
     'corsheaders',
     'drf_spectacular',
     'drf_spectacular_sidecar',
@@ -116,7 +117,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Minstrel API',
+    'TITLE': 'Slush API',
     'DESCRIPTION': (
         'Editorial workflow and submission platform API.'
     ),
